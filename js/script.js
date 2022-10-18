@@ -3,7 +3,6 @@ const playButton = document.querySelector(".play-button");
 const levelSelectHtml = document.getElementById("game-level");
 const bombsNum = 16;
 
-
 let bombNumbers = [];
 let clickedSquares = [];
 
@@ -45,7 +44,7 @@ function levelSelector(level) {
 function createSquare (number, levelChoice) {
     const square = document.createElement("div");
     square.classList.add("square");
-    square.classList.add(levelSelector(levelChoice))
+    square.classList.add(levelSelector(levelChoice));
     square.innerHTML = (number);
     return square;
 }
@@ -56,11 +55,12 @@ function generateElement (levelChoice) {
     for (let i = 1; i < (levelChoice + 1); i++) {
         const element = (i);
         const theSquare = createSquare(element, levelChoice);
-        theSquare.addEventListener("click", function () {
+        theSquare.addEventListener("click", function () {               
             onSquareClick(levelChoice, theSquare);
         })
-        wrapper.append(theSquare); 
+        wrapper.append(theSquare);
     }
+
     while (bombNumbers.length < bombsNum) {
         let rdnNum = rndNumber(1, levelChoice);
         if (!bombNumbers.includes(rdnNum)) {
@@ -78,22 +78,27 @@ function rndNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
+
 //on clic add class blue to element
 function onSquareClick(level, square) {
     let thisClick = parseInt(square.textContent);
+    
     if (bombNumbers.includes(thisClick)){
-        square.classList.add("red");
-        alert("hai perso")
+        square.classList.add("red")
+        alert("hai perso") 
+        console.log(square)
+
     } else if (!bombNumbers.includes(thisClick)) {
         square.classList.add("blue");
+
         if(!clickedSquares.includes(thisClick)){
             clickedSquares.push(thisClick);
         }
+        if ((level - bombsNum) === clickedSquares.length){
+            alert ("hai vinto");
+        }
     }
     
-    if ((level - bombsNum) === clickedSquares.length){
-        alert ("hai vinto");
-    }
     
   }   
 
