@@ -15,7 +15,8 @@ playButton.addEventListener("click", function(){
 //clear the innerhtml and console, show the game window in base of choosen level
 function startGame (level){
     bombNumbers = [];
-    let clickedSquares = []
+    clickedSquares = []
+    canPlay = true;
     // console.clear();
     wrapper.innerHTML = "";
     wrapper.classList.add("active");  
