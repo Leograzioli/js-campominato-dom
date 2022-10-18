@@ -1,19 +1,23 @@
 const wrapper = document.querySelector(".wrapper");
 const playButton = document.querySelector(".play-button");
 const levelSelectHtml = document.getElementById("game-level");
+const bombsNum = 16;
 
-playButton.addEventListener("click", startGame)
 
+let bombNumbers = [];
+let clickedSquares = [];
 
-//FUNCTIONS
+playButton.addEventListener("click", function(){
+    let level = parseInt(levelSelectHtml.value);
+    startGame(level)
+})
 
 //clear the innerhtml and console, show the game window in base of choosen level
-function startGame (){
+function startGame (level){
     bombNumbers = [];
-    console.clear();
+    // console.clear();
     wrapper.innerHTML = "";
-    wrapper.classList.add("active");
-    const level = parseInt(levelSelectHtml.value);   
+    wrapper.classList.add("active");  
     generateElement(level);
 }
 
@@ -46,7 +50,6 @@ function createSquare (number, levelChoice) {
 
 //add square with a number inside
 //levelChoice -> (number) number given by the level choice
-let bombNumbers = [];
 function generateElement (levelChoice) {
     for (let i = 1; i < (levelChoice + 1); i++) {
         const element = (i);
@@ -54,9 +57,8 @@ function generateElement (levelChoice) {
         theSquare.addEventListener("click", onSquareClick)
         wrapper.append(theSquare); 
     }
-    while (bombNumbers.length < 16) {
+    while (bombNumbers.length < bombsNum) {
         let rdnNum = rndNumber(1, levelChoice);
-        console.log(levelChoice)
         if (!bombNumbers.includes(rdnNum)) {
         bombNumbers.push(rdnNum);
         }
@@ -74,13 +76,20 @@ function rndNumber(min, max) {
 
 //on clic add class blue to element
 function onSquareClick() {
-    if (bombNumbers.includes(parseInt(this.textContent))){
+    let thisClick = parseInt(this.textContent);
+    if (bombNumbers.includes(thisClick)){
         this.classList.add("red");
         alert("hai perso")
-    } else if (!bombNumbers.includes(parseInt(this.textContent))) {
+    } else if (!bombNumbers.includes(thisClick)) {
         this.classList.add("blue");
+        if(!clickedSquares.includes(thisClick)){
+            clickedSquares.push(thisClick);
+        }
     }
-    console.log(parseInt(this.textContent));
-}
+
+    
+    //console.log(thisClick);
+    console.log(clickedSquares.length)
+}   
 
 
