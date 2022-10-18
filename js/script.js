@@ -7,14 +7,16 @@ const bombsNum = 16;
 let bombNumbers = [];
 let clickedSquares = [];
 
+
 playButton.addEventListener("click", function(){
-    let level = parseInt(levelSelectHtml.value);
+    const level = parseInt(levelSelectHtml.value);
     startGame(level)
 })
 
 //clear the innerhtml and console, show the game window in base of choosen level
 function startGame (level){
     bombNumbers = [];
+    let clickedSquares = []
     // console.clear();
     wrapper.innerHTML = "";
     wrapper.classList.add("active");  
@@ -54,7 +56,9 @@ function generateElement (levelChoice) {
     for (let i = 1; i < (levelChoice + 1); i++) {
         const element = (i);
         const theSquare = createSquare(element, levelChoice);
-        theSquare.addEventListener("click", onSquareClick)
+        theSquare.addEventListener("click", function () {
+            onSquareClick(levelChoice, theSquare);
+        })
         wrapper.append(theSquare); 
     }
     while (bombNumbers.length < bombsNum) {
@@ -75,21 +79,22 @@ function rndNumber(min, max) {
 }
 
 //on clic add class blue to element
-function onSquareClick() {
-    let thisClick = parseInt(this.textContent);
+function onSquareClick(level, square) {
+    let thisClick = parseInt(square.textContent);
     if (bombNumbers.includes(thisClick)){
-        this.classList.add("red");
+        square.classList.add("red");
         alert("hai perso")
     } else if (!bombNumbers.includes(thisClick)) {
-        this.classList.add("blue");
+        square.classList.add("blue");
         if(!clickedSquares.includes(thisClick)){
             clickedSquares.push(thisClick);
         }
     }
-
     
-    //console.log(thisClick);
-    console.log(clickedSquares.length)
-}   
+    if ((level - bombsNum) === clickedSquares.length){
+        alert ("hai vinto");
+    }
+    
+  }   
 
-
+  
