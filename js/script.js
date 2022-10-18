@@ -67,7 +67,6 @@ function generateElement (levelChoice) {
         bombNumbers.push(rdnNum);
         }
     }
-    console.log(bombNumbers);
 }
 
 //generate a random number between min and max parameters 
@@ -82,7 +81,7 @@ function rndNumber(min, max) {
 //on clic add class blue to element
 function onSquareClick(level, square) {
     let thisClick = parseInt(square.textContent);
-    
+
     if (bombNumbers.includes(thisClick)){
         square.classList.add("red")
         alert("hai perso") 
@@ -98,8 +97,6 @@ function onSquareClick(level, square) {
             alert ("hai vinto");
         }
     }
-    
-    
-  }   
+}   
 
   
