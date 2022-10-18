@@ -14,6 +14,7 @@ function startGame (){
     wrapper.classList.add("active");
     const level = parseInt(levelSelectHtml.value);   
     generateElement(level);
+    bombNumbers = [];
 }
 
 //based on the user choice set the level of the game
@@ -45,7 +46,7 @@ function createSquare (number, levelChoice) {
 
 //add square with a number inside
 //levelChoice -> (number) number given by the level choice
-const bombNumbers = [];
+let bombNumbers = [];
 function generateElement (levelChoice) {
     for (let i = 1; i < (levelChoice + 1); i++) {
         const element = (i);
@@ -53,7 +54,7 @@ function generateElement (levelChoice) {
         theSquare.addEventListener("click", onSquareClick)
         wrapper.append(theSquare); 
     }
-    for (let i = 1; i <= 16; i++) {
+    while (bombNumbers.length < 16) {
         let rdnNum = rndNumber(1, levelChoice);
         console.log(levelChoice)
         if (!bombNumbers.includes(rdnNum)) {
