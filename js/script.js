@@ -53,8 +53,8 @@ function generateElement (levelChoice) {
         theSquare.addEventListener("click", onSquareClick)
         wrapper.append(theSquare); 
     }
-    while (bombNumbers.length < 16) {
-        const rdnNum = rndNumber(1, levelChoice);
+    for (let i = 1; i <= 16; i++) {
+        let rdnNum = rndNumber(1, levelChoice);
         console.log(levelChoice)
         if (!bombNumbers.includes(rdnNum)) {
         bombNumbers.push(rdnNum);
