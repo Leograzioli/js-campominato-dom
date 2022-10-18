@@ -45,17 +45,40 @@ function createSquare (number, levelChoice) {
 
 //add square with a number inside
 //levelChoice -> (number) number given by the level choice
+const bombNumbers = [];
 function generateElement (levelChoice) {
     for (let i = 1; i < (levelChoice + 1); i++) {
-        const element = [i];
+        const element = (i);
         const theSquare = createSquare(element, levelChoice);
         theSquare.addEventListener("click", onSquareClick)
         wrapper.append(theSquare); 
     }
+    while (bombNumbers.length < 16) {
+        const rdnNum = rndNumber(1, levelChoice);
+        console.log(levelChoice)
+        if (!bombNumbers.includes(rdnNum)) {
+        bombNumbers.push(rdnNum);
+        }
+    }
+    console.log(bombNumbers);
+}
+
+//generate a random number between min and max parameters 
+//min -> (number) the min number to generate
+//max -> (number) the biggest number to generate
+//return -> (number)
+function rndNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
 //on clic add class blue to element
 function onSquareClick() {
-    this.classList.add("blue");
-    console.log(this.textContent);
+    if (bombNumbers.includes(parseInt(this.textContent))){
+        this.classList.add("red");
+    } else if (!bombNumbers.includes(parseInt(this.textContent))) {
+        this.classList.add("blue");
+    }
+    console.log(parseInt(this.textContent));
 }
+
+
