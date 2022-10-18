@@ -9,12 +9,12 @@ playButton.addEventListener("click", startGame)
 
 //clear the innerhtml and console, show the game window in base of choosen level
 function startGame (){
+    bombNumbers = [];
     console.clear();
     wrapper.innerHTML = "";
     wrapper.classList.add("active");
     const level = parseInt(levelSelectHtml.value);   
     generateElement(level);
-    bombNumbers = [];
 }
 
 //based on the user choice set the level of the game
@@ -76,6 +76,7 @@ function rndNumber(min, max) {
 function onSquareClick() {
     if (bombNumbers.includes(parseInt(this.textContent))){
         this.classList.add("red");
+        alert("hai perso")
     } else if (!bombNumbers.includes(parseInt(this.textContent))) {
         this.classList.add("blue");
     }
