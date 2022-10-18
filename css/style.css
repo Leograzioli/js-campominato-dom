@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.left-header {
+    display: flex;
+    width: 20%;   
+}
+
+/******* HEADER *******/
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    padding: 0 1rem;
+}
+
+header .play-button {
+    width: 4rem;
+    text-align: center;
+    background-color: lightgray;
+    border: 1px solid gray;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 1rem;
+}
+
+/******* MAIN *******/
+main {
+    width: 100%;
+    height: calc(100vh - 160px);
+    background-color: aquamarine;
+}
+
+.container {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    width: 650px;
+    height: 650px;
+    display: none;
+    flex-wrap: wrap;
+}
+
+.wrapper.active {
+    display: flex;
+}
+
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black
+}
+
+.square.easy{
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+    
+}
+
+.square.normal {
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+
+.square.hard {
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
+
+
+.blue {
+    background-color: blue;
+}
+
+
+/******* FOOTER *******/
+footer {
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    padding-left: 1rem;
+}
+
