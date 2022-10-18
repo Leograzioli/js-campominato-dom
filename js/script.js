@@ -41,7 +41,7 @@ function levelSelector(level) {
 //number -> (number) the number to set inside of the square element
 //levelChoice -> (number) number given by the level choice
 //return -> (object) the square element
-function createSquare (number, levelChoice) {
+function createSquare (number, levelChoice,) {
     const square = document.createElement("div");
     square.classList.add("square");
     square.classList.add(levelSelector(levelChoice));
@@ -54,10 +54,11 @@ function createSquare (number, levelChoice) {
 function generateElement (levelChoice) {
     for (let i = 1; i < (levelChoice + 1); i++) {
         const element = (i);
-        const theSquare = createSquare(element, levelChoice);
+        const theSquare = createSquare(element, levelChoice, i);
         theSquare.addEventListener("click", function () {               
             onSquareClick(levelChoice, theSquare);
         })
+        theSquare.setAttribute("id", i);
         wrapper.append(theSquare);
     }
 
@@ -84,6 +85,10 @@ function onSquareClick(level, square) {
 
     if (bombNumbers.includes(thisClick)){
         square.classList.add("red")
+        for (let i = 0; i < bombNumbers.length; i++) {
+            let bombBox = document.getElementById(bombNumbers[i]);
+            bombBox.classList.add("red"); 
+        }
         alert("hai perso") 
         console.log(square)
 
