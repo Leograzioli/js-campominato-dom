@@ -5,7 +5,7 @@ const bombsNum = 16;
 
 let bombNumbers = [];
 let clickedSquares = [];
-
+let canPlay = true;
 
 playButton.addEventListener("click", function(){
     const level = parseInt(levelSelectHtml.value);
@@ -55,8 +55,10 @@ function generateElement (levelChoice) {
     for (let i = 1; i < (levelChoice + 1); i++) {
         const element = (i);
         const theSquare = createSquare(element, levelChoice, i);
-        theSquare.addEventListener("click", function () {               
-            onSquareClick(levelChoice, theSquare);
+        theSquare.addEventListener("click", function () {  
+            if (canPlay){
+                onSquareClick(levelChoice, theSquare);
+            }             
         })
         theSquare.setAttribute("id", i);
         wrapper.append(theSquare);
@@ -84,6 +86,7 @@ function onSquareClick(level, square) {
     let thisClick = parseInt(square.textContent);
 
     if (bombNumbers.includes(thisClick)){
+        canPlay = false;
         square.classList.add("red")
         for (let i = 0; i < bombNumbers.length; i++) {
             let bombBox = document.getElementById(bombNumbers[i]);
@@ -94,13 +97,13 @@ function onSquareClick(level, square) {
 
     } else if (!bombNumbers.includes(thisClick)) {
         square.classList.add("blue");
+    }
 
-        if(!clickedSquares.includes(thisClick)){
-            clickedSquares.push(thisClick);
-        }
-        if ((level - bombsNum) === clickedSquares.length){
-            alert ("hai vinto");
-        }
+    if(!clickedSquares.includes(thisClick)){
+        clickedSquares.push(thisClick);
+    }
+    if ((level - bombsNum) === clickedSquares.length){
+        alert ("hai vinto");
     }
 }   
 
