@@ -84,7 +84,7 @@ function rndNumber(min, max) {
 //on clic add class blue to element
 function onSquareClick(level, square) {
     let thisClick = parseInt(square.textContent);
-
+    
     if (bombNumbers.includes(thisClick)){
         canPlay = false;
         square.classList.add("red")
@@ -93,15 +93,15 @@ function onSquareClick(level, square) {
             bombBox.classList.add("red"); 
         }
         alert("hai perso") 
-        console.log(square)
-
+        
     } else {
         square.classList.add("blue");
-
+        console.log((clickedSquares.length + 1));
+        
         if(!clickedSquares.includes(thisClick)){
             clickedSquares.push(thisClick);
         }
-          
+        
         if ((level - bombsNum) === clickedSquares.length){
             alert ("hai vinto");
         }
