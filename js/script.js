@@ -15,7 +15,7 @@ playButton.addEventListener("click", function(){
 //clear the innerhtml and console, show the game window in base of choosen level
 function startGame (level){
     bombNumbers = [];
-    clickedSquares = []
+    clickedSquares = [];
     canPlay = true;
     // console.clear();
     wrapper.innerHTML = "";
@@ -81,7 +81,6 @@ function rndNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
-
 //on clic add class blue to element
 function onSquareClick(level, square) {
     let thisClick = parseInt(square.textContent);
@@ -96,16 +95,15 @@ function onSquareClick(level, square) {
         alert("hai perso") 
         console.log(square)
 
-    } else if (!bombNumbers.includes(thisClick)) {
+    } else {
         square.classList.add("blue");
-    }
 
-    if(!clickedSquares.includes(thisClick)){
-        clickedSquares.push(thisClick);
-    }
-    if ((level - bombsNum) === clickedSquares.length){
-        alert ("hai vinto");
-    }
-}   
-
-  
+        if(!clickedSquares.includes(thisClick)){
+            clickedSquares.push(thisClick);
+        }
+          
+        if ((level - bombsNum) === clickedSquares.length){
+            alert ("hai vinto");
+        }
+    } 
+}
